@@ -27,15 +27,11 @@ export function fetchBooks(): Promise<any>{
 }
 
 export function getBookInfo(book: Book): Promise<any>{
-			// tslint:disable-next-line:no-console
-	console.log("https://www.googleapis.com/books/v1/volumes?q=" + book.title +"inauthor:" + book.author)
 	return fetch("https://www.googleapis.com/books/v1/volumes?q=" + book.title +"+inauthor:" + book.author, {
 		method: 'GET'
 	})
 	.then(res => res.json())
 	.then(res => {
-		// tslint:disable-next-line:no-console
-		console.log(res)
 		return res
 	})
 	.then(res => {
