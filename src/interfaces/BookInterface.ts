@@ -8,6 +8,12 @@ export interface Book {
 	signed_out_to: string;
 }
 
+export interface AdditionalBookInfo{
+	subtitle: string,
+	description: string,
+	imageLink: string,
+}
+
 export function createBook(config: Book): {
 	title: string,
 	author: string,
@@ -27,3 +33,31 @@ export function createBook(config: Book): {
 		signed_out_to: config.signed_out_to,
 	}
 }
+
+export function createAdditionalInfo(config: AdditionalBookInfo) :{
+	subtitle: string,
+	description: string,
+	imageLink: string,
+} {
+	return { 
+		subtitle: config.subtitle,
+		description: config.description,
+		imageLink: config.imageLink,
+	}
+}
+
+export const emptyBook = createBook({
+	title: "",
+  author: "",
+  genre: "",
+  synopsis: "",
+  id: 0,
+  avalible: false,
+  signed_out_to: "",
+})
+
+export const emptyAdditionalInfo = createAdditionalInfo({
+  subtitle: "",
+  description: "",
+  imageLink: ""
+})

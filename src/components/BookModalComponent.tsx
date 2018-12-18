@@ -1,11 +1,12 @@
 	import Modal from '@bdenzer/react-modal';
 	import * as React from 'react';
 	
-	import { Book } from '../interfaces/BookInterface';
+	import { AdditionalBookInfo, Book } from '../interfaces/BookInterface';
 
 	interface Props {
 		modalVisible: boolean;
 		activeItem: Book;
+		additionalInfo: AdditionalBookInfo;
 		closeModal: () => void;
 	}
 
@@ -13,12 +14,8 @@
 		constructor (props: any){
 			super(props)
 			this.state = {isShown: false}
-			this.close = this.close.bind(this);
-	    this.open = this.open.bind(this);
-	    this.openTest = this.openTest.bind(this);
 		} 
 		
-
 		public render(){
 			return (
 				<div>
@@ -27,24 +24,13 @@
 						closeModal={this.props.closeModal}
 					>
 						<h2>{this.props.activeItem.author} - {this.props.activeItem.title}</h2>
-						<h5>{this.props.activeItem.genre}</h5>
-						<p>{this.props.activeItem.synopsis}</p>
+						<h5>{this.props.additionalInfo.subtitle}</h5>
+						<img src={this.props.additionalInfo.imageLink}/>
+						<p>{this.props.additionalInfo.description}</p>
+
 					</Modal>
 				</div>
 			)
-		}
-
-		public open(book: Book): void {
-			this.setState({ book, isShown: true})
-		}
-
-		private close(): void {
-			this.setState({ isShown: false})
-		
-		}
-
-		private openTest(): void {
-			this.setState({ isShown: true})
 		}
 
 	}

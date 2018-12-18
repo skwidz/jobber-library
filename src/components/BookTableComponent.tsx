@@ -2,8 +2,7 @@ import Modal from '@bdenzer/react-modal';
 
 import * as React from 'react';
 
-// import { fetchBooks } from '../api'
-import { Book, createBook } from '../interfaces/BookInterface'
+import {AdditionalBookInfo, Book, createAdditionalInfo, createBook } from '../interfaces/BookInterface'
 
 
 interface State {
@@ -28,17 +27,17 @@ export default class BookTable extends React.Component<Props, State>{
 		this.setState(
 			{books: [
 				{
-					title: 'title one',
+					title: '1984',
 					id: 1,
-					author:"test author",
-					genre: "test genre",
+					author:"George Orwell",
+					genre: "Fiction",
 					synopsis:"dsaj;flaksdjf; as;dlkfjasdf iasdjf asdkfj ujsdf wajf uefuas h awuefh 8wnh aseh iasdjfh asdkjasdf",
 					avalible: true, 
 					signed_out_to: "", 
 				},
 				{
-					title: "title two", 
-					author:"test author",
+					title: "A Brief History of Time", 
+					author:"Stephen Hawking",
 					genre: "test genre",
 					synopsis:"dsaj;flaksdjf; as;dlkfjasdf iasdjf asdkfj ujsdf wajf uefuas h awuefh 8wnh aseh iasdjfh asdkjasdf",
 					id: 2,
@@ -84,7 +83,9 @@ export default class BookTable extends React.Component<Props, State>{
 						{book.avalible ? "" : book.signed_out_to}
 					</span>
 				</td>
-				<button onClick={() => {openModal(); updateActive(book);}}>CHECKOUT</button>
+				<td>
+					<button onClick={() => {openModal(); updateActive(book);}}>CHECKOUT</button>
+				</td>
 			</tr>
 			)
 	}

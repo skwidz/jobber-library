@@ -1,15 +1,17 @@
 import * as React from 'react';
 import './App.css';
 
+import { getBookInfo } from './api'
 import logo from './logo.svg';
 
 import BookModal from './components/BookModalComponent'
 import BookTable from './components/BookTableComponent'
-import { Book, createBook } from './interfaces/BookInterface'
+import { AdditionalBookInfo, Book, createAdditionalInfo, createBook,emptyAdditionalInfo, emptyBook } from './interfaces/BookInterface'
 
 
 interface State {
   activeItem: Book;
+  additionalInfo: AdditionalBookInfo;
   modalVisible: boolean;
 }
 
@@ -19,16 +21,9 @@ class App extends React.Component<any, State>
   constructor(props: any){
     super(props)
     this.state = { 
-      activeItem: createBook({
-        title: "",
-        author: "",
-        genre: "",
-        synopsis: "",
-        id: 0,
-        avalible: false,
-        signed_out_to: ""
-      }), 
+      activeItem: emptyBook,
       modalVisible: false,
+      additionalInfo: emptyAdditionalInfo
     }
   }
 
@@ -36,12 +31,15 @@ class App extends React.Component<any, State>
     return (
       <div className="App">
         <BookTable updateActive={this.updateActive} openModal={this.openModal} closeModal={this.closeModal}/>
-        <BookModal activeItem={this.state.activeItem}  modalVisible={this.state.modalVisible} closeModal={this.closeModal}/> 
+        <BookModal activeItem={this.state.activeItem} additionalInfo={this.state.additionalInfo} modalVisible={this.state.modalVisible} closeModal={this.closeModal}/> 
       </div>
     );
   }
   private updateActive = (book: Book): void => {
     this.setState({ activeItem: book})
+    const info = getBookInfo(book)
+      .then(inf => this.setState({additionalInfo: inf}))
+    
   }
 
   private openModal = (): void => {
@@ -49,7 +47,7 @@ class App extends React.Component<any, State>
   }
 
   private closeModal = (): void => {
-    this.setState({ modalVisible: false })
+    this.setState({ modalVisible: false, additionalInfo: emptyAdditionalInfo})
   }
 }
 
