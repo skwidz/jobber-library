@@ -35,17 +35,8 @@ class App extends React.Component<any, State>
   public render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.tsx</code> and save to reload.
-          <BookTable updateActive={this.updateActive} openModal={this.openModal} closeModal={this.closeModal}/>
-          {/*need to make a reference to this function.*/}
-        {/*could i also put a modal on the table?*/}
-          <BookModal activeItem={this.state.activeItem}  modalVisible={this.state.modalVisible} closeModal={this.closeModal}/> 
-        </p>
+        <BookTable updateActive={this.updateActive} openModal={this.openModal} closeModal={this.closeModal}/>
+        <BookModal activeItem={this.state.activeItem}  modalVisible={this.state.modalVisible} closeModal={this.closeModal}/> 
       </div>
     );
   }

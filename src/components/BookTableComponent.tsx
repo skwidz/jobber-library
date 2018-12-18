@@ -69,6 +69,12 @@ export default class BookTable extends React.Component<Props, State>{
 					<span>{book.title}</span>
 				</td>
 				<td>
+					<span>{book.author}</span>
+				</td>
+				<td>
+					<span>{book.genre}</span>
+				</td>
+				<td>
 					<span>
 						{book.avalible ? "Avalible" : "Signed Out"}
 					</span> 
@@ -90,6 +96,8 @@ const BookTableHeader = () => {
 	return (
 		<tr>
 			<th>Title</th>
+			<th>Author</th>
+			<th>Genre</th>
 			<th>Avalible?</th>
 			<th>Signed Out To</th>
 		</tr>
