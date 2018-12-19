@@ -1,3 +1,5 @@
+import axios from 'axios';
+
 import {AdditionalBookInfo, Book, createAdditionalInfo, createBook} from '../interfaces/BookInterface'
 
 // const fetchBooks = (): Promise<any> => {
@@ -15,14 +17,10 @@ import {AdditionalBookInfo, Book, createAdditionalInfo, createBook} from '../int
 // }; 
 
 export function fetchBooks(): Promise<any>{
-	return fetch("https://libraryapijobber.herokuapp.com/api/books",{
+	return fetch("http://libraryapijobber.herokuapp.com/api/books/", {
 		method: 'GET',
-		headers: {
-			'Content-Type': 'application/json',
-      'Accept': 'application/json',
-		}
 	})
-	.then(res => res.json)
+	.then(res => res.json())
 	.catch(err => {throw new Error(err)})
 }
 

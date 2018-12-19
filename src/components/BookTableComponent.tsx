@@ -2,6 +2,7 @@ import Modal from '@bdenzer/react-modal';
 
 import * as React from 'react';
 
+import { fetchBooks } from '../api'
 import {AdditionalBookInfo, Book, createAdditionalInfo, createBook } from '../interfaces/BookInterface'
 
 
@@ -45,6 +46,7 @@ export default class BookTable extends React.Component<Props, State>{
 					signed_out_to: "chriwstian", 
 				}
 		]})
+		fetchBooks()
 	}
 
 	public render() {
