@@ -25,27 +25,6 @@ export default class BookTable extends React.Component<Props, State>{
 	}
 
 	public componentDidMount() {
-		// this.setState(
-		// 	{books: [
-		// 		{
-		// 			title: '1984',
-		// 			id: 1,
-		// 			author:"George Orwell",
-		// 			genre: "Fiction",
-		// 			synopsis:"dsaj;flaksdjf; as;dlkfjasdf iasdjf asdkfj ujsdf wajf uefuas h awuefh 8wnh aseh iasdjfh asdkjasdf",
-		// 			avalible: true, 
-		// 			signed_out_to: "", 
-		// 		},
-		// 		{
-		// 			title: "A Brief History of Time", 
-		// 			author:"Stephen Hawking",
-		// 			genre: "test genre",
-		// 			synopsis:"dsaj;flaksdjf; as;dlkfjasdf iasdjf asdkfj ujsdf wajf uefuas h awuefh 8wnh aseh iasdjfh asdkjasdf",
-		// 			id: 2,
-		// 			avalible: false,
-		// 			signed_out_to: "chriwstian", 
-		// 		}
-		// ]})
 		fetchBooks()
 		.then(res => {
 			this.setState({books: res})
