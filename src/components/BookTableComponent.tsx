@@ -25,28 +25,31 @@ export default class BookTable extends React.Component<Props, State>{
 	}
 
 	public componentDidMount() {
-		this.setState(
-			{books: [
-				{
-					title: '1984',
-					id: 1,
-					author:"George Orwell",
-					genre: "Fiction",
-					synopsis:"dsaj;flaksdjf; as;dlkfjasdf iasdjf asdkfj ujsdf wajf uefuas h awuefh 8wnh aseh iasdjfh asdkjasdf",
-					avalible: true, 
-					signed_out_to: "", 
-				},
-				{
-					title: "A Brief History of Time", 
-					author:"Stephen Hawking",
-					genre: "test genre",
-					synopsis:"dsaj;flaksdjf; as;dlkfjasdf iasdjf asdkfj ujsdf wajf uefuas h awuefh 8wnh aseh iasdjfh asdkjasdf",
-					id: 2,
-					avalible: false,
-					signed_out_to: "chriwstian", 
-				}
-		]})
+		// this.setState(
+		// 	{books: [
+		// 		{
+		// 			title: '1984',
+		// 			id: 1,
+		// 			author:"George Orwell",
+		// 			genre: "Fiction",
+		// 			synopsis:"dsaj;flaksdjf; as;dlkfjasdf iasdjf asdkfj ujsdf wajf uefuas h awuefh 8wnh aseh iasdjfh asdkjasdf",
+		// 			avalible: true, 
+		// 			signed_out_to: "", 
+		// 		},
+		// 		{
+		// 			title: "A Brief History of Time", 
+		// 			author:"Stephen Hawking",
+		// 			genre: "test genre",
+		// 			synopsis:"dsaj;flaksdjf; as;dlkfjasdf iasdjf asdkfj ujsdf wajf uefuas h awuefh 8wnh aseh iasdjfh asdkjasdf",
+		// 			id: 2,
+		// 			avalible: false,
+		// 			signed_out_to: "chriwstian", 
+		// 		}
+		// ]})
 		fetchBooks()
+		.then(res => {
+			this.setState({books: res})
+		})
 	}
 
 	public render() {
@@ -65,7 +68,7 @@ export default class BookTable extends React.Component<Props, State>{
 
 	private BookTableRow(book:Book, openModal: ()=> void, updateActive:(book:Book) => void){
 		return (
-			<tr key={book.id} >
+			<tr key={book.title} >
 				<td>
 					<span>{book.title}</span>
 				</td>
@@ -75,7 +78,7 @@ export default class BookTable extends React.Component<Props, State>{
 				<td>
 					<span>{book.genre}</span>
 				</td>
-				<td>
+				{/*<td>
 					<span>
 						{book.avalible ? "Avalible" : "Signed Out"}
 					</span> 
@@ -84,7 +87,7 @@ export default class BookTable extends React.Component<Props, State>{
 					<span>
 						{book.avalible ? "" : book.signed_out_to}
 					</span>
-				</td>
+				</td>*/}
 				<td>
 					<button onClick={() => {openModal(); updateActive(book);}}>CHECKOUT</button>
 				</td>
@@ -101,8 +104,8 @@ const BookTableHeader = () => {
 			<th>Title</th>
 			<th>Author</th>
 			<th>Genre</th>
-			<th>Avalible?</th>
-			<th>Signed Out To</th>
+			{/*<th>Avalible?</th>
+			<th>Signed Out To</th>*/}
 		</tr>
 	)
 }

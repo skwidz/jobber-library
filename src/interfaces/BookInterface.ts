@@ -1,11 +1,11 @@
 export interface Book { 
 	title: any;
-	id: number;
 	author: string,
 	genre: string,
 	synopsis: string,
-	avalible: boolean;
-	signed_out_to: string;
+	// id: number;
+	// avalible: boolean;
+	// signed_out_to: string;
 }
 
 export interface AdditionalBookInfo{
@@ -19,18 +19,18 @@ export function createBook(config: Book): {
 	author: string,
 	genre: string,
 	synopsis: string,
-	id: number,
-	avalible: boolean,
-	signed_out_to: string,
+	// id: number,
+	// avalible: boolean,
+	// signed_out_to: string,
 } {
 	return { 
 		title: config.title,
-		id: config.id,
 		author: config.author, 
 		genre: config.genre,
 		synopsis: config.synopsis,
-		avalible: config.avalible,
-		signed_out_to: config.signed_out_to,
+		// id: config.id,
+		// avalible: config.avalible,
+		// signed_out_to: config.signed_out_to,
 	}
 }
 
@@ -51,9 +51,9 @@ export const emptyBook = createBook({
   author: "",
   genre: "",
   synopsis: "",
-  id: 0,
-  avalible: false,
-  signed_out_to: "",
+  // id: 0,
+  // avalible: false,
+  // signed_out_to: "",
 })
 
 export const emptyAdditionalInfo = createAdditionalInfo({
