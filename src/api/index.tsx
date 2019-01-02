@@ -1,20 +1,5 @@
-import axios from 'axios';
 
 import {AdditionalBookInfo, Book, createAdditionalInfo, createBook} from '../interfaces/BookInterface'
-
-// const fetchBooks = (): Promise<any> => {
-// 	return fetch('https://libraryapijobber.herokuapp.com/admin')
-// 	.then(res => {
-// 		if (!res.ok) {
-// 			throw new Error(res.statusText)
-// 		}
-// 		return res.json
-// 	})
-// };
-
-// export const booksAPI = {
-// 	fetchBooks,
-// }; 
 
 export function fetchBooks(): Promise<any>{
 	return fetch("http://libraryapijobber.herokuapp.com/api/books/", {
@@ -40,5 +25,13 @@ export function getBookInfo(book: Book): Promise<any>{
 			imageLink: item.volumeInfo.imageLinks.thumbnail,
 		}) 
 	})
+	.catch(err => {throw new Error(err)})
+}
+
+export function fetchBookReviews(): Promise<any>{
+	return fetch("http://libraryapijobber.herokuapp.com/api/reviews/", {
+		method: 'GET',
+	})
+	.then(res => res.json())
 	.catch(err => {throw new Error(err)})
 }

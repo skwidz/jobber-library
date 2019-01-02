@@ -1,13 +1,16 @@
 import Modal from '@bdenzer/react-modal';
 
 import * as React from 'react';
+// import ReactDataGrid from 'react-data-grid';
 
-import { fetchBooks } from '../api'
+import { fetchBookReviews, fetchBooks } from '../api'
 import {AdditionalBookInfo, Book, createAdditionalInfo, createBook } from '../interfaces/BookInterface'
+import {createReview, Review } from '../interfaces/ReviewInterface'
 
 
 interface State {
 	books: Book[];
+	reviews: Review[];
 }
 
 interface Props {
@@ -21,7 +24,7 @@ export default class BookTable extends React.Component<Props, State>{
 
 	constructor (props: any){
 		super(props)
-		this.state = { books: []}
+		this.state = { books: [], reviews: []}
 	}
 
 	public componentDidMount() {
@@ -29,25 +32,38 @@ export default class BookTable extends React.Component<Props, State>{
 		.then(res => {
 			this.setState({books: res})
 		})
+		fetchBookReviews()
+		.then(res => {
+			this.setState({reviews: res})
+		})
 	}
 
 	public render() {
-
+		const columns = [
+			{ key: 'title', name: 'Title' },
+			{ key: 'author', name: 'Author'},
+			{ key: 'genre', name: 'Genre'}
+		]
 		
 		return (
 			<div className="row">
-			
-				<table className="table">
+				{/*<ReactDataGrid 
+					columns={columns}
+					rowGetter={(i: keyof Book) => this.state.books[i]}
+					rowsCount={this.state.books.length}
+
+				/>*/}
+				{<table className="table">
 					<thead>{BookTableHeader()}</thead>
 					<tbody>{this.state.books.map(book => this.BookTableRow(book, this.props.openModal, this.props.updateActive))}</tbody>
-				</table>
+				</table>}
 			</div>
 		)
 	}
 
 	private BookTableRow(book:Book, openModal: ()=> void, updateActive:(book:Book) => void){
 		return (
-			<tr key={book.title} >
+			<tr key={book.title}  onClick={() => {openModal(); updateActive(book);}}>
 				<td>
 					<span>{book.title}</span>
 				</td>
@@ -68,7 +84,7 @@ export default class BookTable extends React.Component<Props, State>{
 					</span>
 				</td>*/}
 				<td>
-					<button onClick={() => {openModal(); updateActive(book);}}>CHECKOUT</button>
+					<button onClick={() => {openModal(); updateActive(book);}}>More Info</button>
 				</td>
 			</tr>
 			)

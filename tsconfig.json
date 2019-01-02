@@ -17,6 +17,7 @@
     "importHelpers": true,
     "strictNullChecks": true,
     "suppressImplicitAnyIndexErrors": true,
+    // "noImplicitAny": false,
     
   },
   "exclude": [
@@ -27,5 +28,6 @@
     "webpack",
     "jest",
     "src/setupTests.ts"
-  ]
+  ], 
+  
 }

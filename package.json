@@ -4,8 +4,10 @@
   "private": true,
   "dependencies": {
     "@bdenzer/react-modal": "^0.6.2",
+    "@types/react-data-grid": "^4.0.1",
     "axios": "^0.18.0",
     "react": "^16.6.3",
+    "react-data-grid": "^5.0.5",
     "react-dom": "^16.6.3",
     "react-modal": "^3.6.1",
     "react-scripts-ts": "3.1.0"
